@@ -1,0 +1,32 @@
+{
+  "name": "habla-chat",
+  "version": "1.0.0",
+  "description": "Chat engine for habla AI",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/app.js",
+    "build": "babel src --out-dir dist",
+    "serve": "node dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Habla-Inc/habla-chat.git"
+  },
+  "author": "Jonatan Frank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Habla-Inc/habla-chat/issues"
+  },
+  "homepage": "https://github.com/Habla-Inc/habla-chat#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "moment": "^2.24.0"
+  }
+}
