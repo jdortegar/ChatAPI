@@ -6,12 +6,12 @@ class Message {
         this.content = content;
         this.replyTo = replyTo;
         this.createdBy = createdBy;
-        this.byteCount = this.byteCountOfContent();
+        this.byteCount = this._byteCountOfContent();
         this.created = now.format();
         this.lastModified = now.format();
     }
     
-    byteCountOfContent() {
+    _byteCountOfContent() {
         let byteCount = 0;
         this.content.forEach((entry) => {
             if ((entry.meta) && (entry.meta.fileSize)) {
@@ -23,3 +23,5 @@ class Message {
         return byteCount;
     }
 } 
+
+export default Message;
