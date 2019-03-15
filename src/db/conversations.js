@@ -4,7 +4,7 @@ import config from '../config';
 AWS.config.update({
     accessKeyId: config.AWS.accessKeyId,
     secretAccessKey: config.AWS.secretAccessKey,
-    retion: config.AWS.awsRegion
+    region: config.AWS.awsRegion
 });
 AWS.config.dynamodb = { endpoint: config.database.dynamoDB.endpoint };
 const dbClient = new AWS.DynamoDB.DocumentClient();
@@ -26,6 +26,7 @@ export const createConversation = async (id, members, title, description, messag
         };
         return await dbClient.put(params).promise();
     } catch (err) {
+        console.log(err);
         return Promise.reject(err);
     }
 };
@@ -44,6 +45,22 @@ export const getConversationsByUserId = async (userId) => {
         }
         const result = await dbClient.scan(params).promise();
         return result.rows;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+export const getConversationById = async (id) => {
+    try {
+        const params = { 
+            TableName: TableName(),
+            KeyConditionExpression: 'id = :id',
+            ExpressionAttributeValues: {
+                ':id': id
+            }
+        }
+        const data = await dbClient.query(params).promise();
+        return data.Items;
     } catch (err) {
         return Promise.reject(err);
     }

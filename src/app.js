@@ -1,7 +1,8 @@
 import express from 'express';
-import http from 'http';
 import AWS from 'aws-sdk';
+import bodyParser from 'body-parser';
 import config from './config';
+import routes from './routes';
 import chatSocket from './services/socket/ChatSocket'; 
 
 const app = express();
@@ -14,6 +15,9 @@ AWS.config.update({
     secretAccessKey: config.AWS.secretAccessKey,
     region: config.AWS.awsRegion
 });
+app.use(bodyParser.json());
+
+app.use('/api/v1/', routes);
 
 const server = app.listen(config.app.port, () => {
     chatSocket.init(server);
