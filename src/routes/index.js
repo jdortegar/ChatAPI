@@ -51,4 +51,6 @@ const router = express.Router();
  */
 router.post('/conversations', conversations.createConversation);
 
+router.get('/conversations', conversations.getConversations);
+
 export default router;

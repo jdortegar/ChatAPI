@@ -21,8 +21,9 @@ export class Conversation {
     static async getUserConversations(userId) {
         try {
             const results = await conversationsDB.getConversationsByUserId(userId);
+            console.log(results);
             const collection = [];
-            _.foreach(results, (val) => {
+            _.forEach(results, (val) => {
                 collection.push(new Conversation(val.id, val.members, val.title, val.description, val.organization, val.appData, val.active));
             });
             return collection;

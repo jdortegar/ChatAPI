@@ -45,7 +45,7 @@ export const getConversationsByUserId = async (userId) => {
             FilterExpression: 'contains(#members, :userId)'
         }
         const result = await dbClient.scan(params).promise();
-        return result.rows;
+        return result.Items;
     } catch (err) {
         return Promise.reject(err);
     }
