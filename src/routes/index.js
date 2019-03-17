@@ -53,4 +53,6 @@ router.post('/conversations', conversations.createConversation);
 
 router.get('/conversations', conversations.getConversations);
 
+router.patch('/conversations/:conversationId', conversations.updateConversations);
+
 export default router;
