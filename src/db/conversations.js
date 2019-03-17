@@ -9,7 +9,7 @@ AWS.config.update({
 AWS.config.dynamodb = { endpoint: config.database.dynamoDB.endpoint };
 const dbClient = new AWS.DynamoDB.DocumentClient();
 
-export const createConversation = async (id, members, title, description, messageCount, appData, active) => {
+export const createConversation = async (id, members, title, description, messageCount, organization, appData, active) => {
     try {
         members.sort();
         const params = {
@@ -20,6 +20,7 @@ export const createConversation = async (id, members, title, description, messag
                 title,
                 description,
                 messageCount,
+                organization,
                 appData,
                 active
             }

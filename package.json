@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/app.js",
     "build": "babel src --out-dir dist",
-    "serve": "node dist/app.js"
+    "serve": "node dist/app.js",
+    "apidoc": "apidoc -i src/routes -o src/static/apidoc"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "nodemon": "^1.18.10"
   },
   "dependencies": {
+    "apidoc": "^0.17.7",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "http-status": "^1.3.1",

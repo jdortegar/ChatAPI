@@ -3,11 +3,12 @@ import _ from 'lodash';
 import * as conversationsDB from '../db/conversations';
 
 export class Conversation {
-    constructor(id = null, members= [], title = null, description = null, appData = {}, active = true) {
+    constructor(id = null, members= [], title = null, description = null, organization = null, appData = {}, active = true) {
         this.id = id;
         this.members = members;
         this.title = title;
         this.description = description;
+        this.organization = organization;
         this.appData = appData;
         this.active = active;
     }
@@ -22,7 +23,7 @@ export class Conversation {
             const results = await conversationsDB.getConversationsByUserId(userId);
             const collection = [];
             _.foreach(results, (val) => {
-                collection.push(new Conversation(val.id, val.members, val.title, val.description, val.appData, val.active));
+                collection.push(new Conversation(val.id, val.members, val.title, val.description, val.organization, val.appData, val.active));
             });
             return collection;
         } catch (err) {
@@ -34,7 +35,7 @@ export class Conversation {
         try {
             if (!this.id) {
                 this.id = uuid.v4();
-                await conversationsDB.createConversation(this.id, this.members, this.title, this.description, 0, this.appData, this.active)
+                await conversationsDB.createConversation(this.id, this.members, this.title, this.description, 0, this.organization,  this.appData, this.active)
                 this.messageCount = 0;
                 return this;
             }
