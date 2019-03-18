@@ -173,4 +173,5 @@ class ChatSocket {
     }
 }
 
-export default ChatSocket;
+const SocketInstance = new ChatSocket();
+export default SocketInstance;

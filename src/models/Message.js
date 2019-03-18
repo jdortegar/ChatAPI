@@ -1,7 +1,9 @@
 import moment from 'moment';
+import uuid from 'uuid';
 class Message {
-    constructor(conversationId, content, createdBy, replyTo = null) {
+    constructor(id = null, conversationId= null, content = null, createdBy =null, replyTo = null) {
         const now = moment();
+        this.id = (id) ? id : uuid.v4();
         this.conversationId = conversationId;
         this.content = content;
         this.replyTo = replyTo;
