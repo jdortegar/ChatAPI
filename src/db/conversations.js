@@ -28,7 +28,7 @@ export const createConversation = async (id, members, title, description, messag
         };
         return await dbClient.put(params).promise();
     } catch (err) {
-        console.log(err);
+        console.error(err);
         return Promise.reject(err);
     }
 };

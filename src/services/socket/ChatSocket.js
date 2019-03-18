@@ -140,15 +140,37 @@ class ChatSocket {
      * @param {String} event 
      */
     _message(socket, eventType, event) {
-        if (eventType === EventTypes.typing && event.conversationId) {
-            const userId = socket.decoded_token._id;
-            const channel = ChannelFactory.conversationChannel(conversationId);
-            socket.to(channel).emit(eventType, { userId, conversationId, isTyping: event.isTyping });
-        } else {
-            console.warn(`ChatSocket: Dropping Message received from sId=${socket.id} userId=${socket.decoded_token._id} ${socket.decoded_token.email}. eventType=${eventType},
-                event=${event}`);
+        switch (eventType) {
+            case EventTypes.typing:
+                if (event.conversationId) {
+                    const userId = socket.decoded_token._id;
+                    const channel = ChannelFactory.conversationChannel(conversationId);
+                    socket.to(channel).emit(eventType, {userId, conversationId, isTyping: event.isTyping });
+                    break; // We break inside the if because if not exist conversation Id we need to log an error.
+                }
+            default:
+                console.warn(`ChatSocket: Dropping Message received from sId=${socket.id} userId=${socket.decoded_token._id} ${socket.decoded_token.email}. eventType=${eventType},
+                   event=${event}`);
         }
+    }
 
+    /**
+     * Here we send event to a given channel like chat messages.
+     * 
+     * @param {String} eventType 
+     * @param {Object} event 
+     * @param {String} channel 
+     */
+    sendEvent(eventType, event, channel = null) {
+       if (channel) {
+           this.io.in(channel).emit(eventType, event);
+       } else {
+           this.io.emit(eventType, event);
+       }
+       if (config.app.environment === 'dev') {
+            const channelsString = (channels) ? `, channels="${JSON.stringify(channels)}"` : '';
+            console.debug(`MessagingService.broadcastEvent(eventType=${eventType}, event=${JSON.stringify(event)})${channelsString}`);
+       }
     }
 
     /**

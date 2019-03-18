@@ -1,6 +1,7 @@
 export const EventTypes = Object.freeze({
     prescenceChanged: 'prescenceChanged',
     typing: 'typing',
+    messageCreated: 'messageCreated'
 });
 
 export class ChannelFactory {
