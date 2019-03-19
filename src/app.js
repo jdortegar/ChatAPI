@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import AWS from 'aws-sdk';
 import bodyParser from 'body-parser';
 import config from './config';
@@ -15,6 +16,7 @@ AWS.config.update({
     secretAccessKey: config.AWS.secretAccessKey,
     region: config.AWS.awsRegion
 });
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api/v1/', routes);
@@ -25,6 +27,3 @@ const server = app.listen(config.app.port, () => {
     console.info(`Habla Chat started on port ${config.app.port}`);
     console.info('---------------------------------------------------------------')
 }) 
-// server.listen(config.app.port, () => {
-//     console.info(`Habla Chat running on port ${config.app.port}`);
-// });
