@@ -1,8 +1,9 @@
 import uuid from 'uuid';
 import _ from 'lodash';
 import * as conversationsDB from '../db/conversations';
+import Model from './Model';
 
-export class Conversation {
+class Conversation  extends Model {
     constructor(id = null, members= [], title = null, description = null, organization = null, appData = {}, active = true, messageCount = 0) {
         this.id = id;
         this.members = members;
@@ -32,15 +33,6 @@ export class Conversation {
 
     }
     
-    /**
-     * Update the object with the given object.
-     * @param {Object} props 
-     */
-    update(props) {
-        _.forOwn(props, (val, key) => {
-            this[key] = val;
-        });    
-    }
     /**
      * Return an array of all user Conversations.
      * 

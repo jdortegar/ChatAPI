@@ -21,6 +21,7 @@ app.use('/api/v1/', routes);
 
 const server = app.listen(config.app.port, () => {
     chatSocket.init(server);
+    app.locals.chatSocket = chatSocket;
     console.info(`Habla Chat started on port ${config.app.port}`);
     console.info('---------------------------------------------------------------')
 }) 

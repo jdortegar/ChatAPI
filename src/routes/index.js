@@ -1,5 +1,6 @@
 import express from 'express';
-import * as conversations from '../controllers/conversationsController'
+import * as conversations from '../controllers/conversationsController';
+import * as messages from '../controllers/messagesController';
 const router = express.Router();
 
 /**
@@ -52,7 +53,9 @@ const router = express.Router();
 router.post('/conversations', conversations.createConversation);
 
 router.get('/conversations', conversations.getConversations);
-
+    
 router.patch('/conversations/:conversationId', conversations.updateConversations);
+
+router.post('/conversations/:conversationId/messages', messages.createMessage);
 
 export default router;
