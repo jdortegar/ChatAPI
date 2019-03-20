@@ -2,7 +2,7 @@ import _ from 'lodash';
 import SocketIO from 'socket.io';
 import socketioJwt from 'socketio-jwt';
 import socketIOWildcard from 'socketio-wildcard';
-import SocketIoRedisAdapter from 'socket.io-redis';
+// import SocketIoRedisAdapter from 'socket.io-redis';
 import { EventTypes, ChannelFactory } from './factory';
 import config from '../../config';
 import Conversation from '../../models/Conversation';
