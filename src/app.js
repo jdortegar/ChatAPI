@@ -16,9 +16,13 @@ AWS.config.update({
     secretAccessKey: config.AWS.secretAccessKey,
     region: config.AWS.awsRegion
 });
+// enable CORS requests. From all.
 app.use(cors());
+
+// Set up the body parser
 app.use(bodyParser.json());
 
+// Enable Routes
 app.use('/api/v1/', routes);
 
 const server = app.listen(config.app.port, () => {

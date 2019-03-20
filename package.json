@@ -7,7 +7,8 @@
     "start": "nodemon --exec babel-node src/app.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/app.js",
-    "apidoc": "apidoc -i src/routes -o src/static/apidoc"
+    "apidoc": "apidoc -i src/routes -o src/static/apidoc",
+    "start:prod": "npm run build && npm run apidoc && node dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -19,15 +20,14 @@
     "url": "https://github.com/Habla-Inc/habla-chat/issues"
   },
   "homepage": "https://github.com/Habla-Inc/habla-chat#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.4",
     "aws-sdk": "^2.420.0",
-    "nodemon": "^1.18.10"
-  },
-  "dependencies": {
+    "nodemon": "^1.18.10",
     "apidoc": "^0.17.7",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
