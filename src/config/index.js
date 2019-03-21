@@ -1,6 +1,6 @@
 const config = {
     app: {
-        port: 4242,
+        port: 8081,
         jwtSecret: process.env.JWT_SECRET || '69157cde-e3a7-4079-b79a-95a35d58c6d3',
         corsOrigins: '*:*',
         environment: process.env.APP_ENV || 'dev',
