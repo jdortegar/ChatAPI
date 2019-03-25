@@ -6,6 +6,7 @@ import * as messagesDB from '../db/messages';
 
 class Message extends Model {
     constructor(id = null, conversationId= null, content = null, createdBy =null, replyTo = null) {
+        super();
         const now = moment();
         // this._new property is for checking if update or create on save.
         if (!id) {

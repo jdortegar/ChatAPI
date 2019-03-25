@@ -1,7 +1,7 @@
 class NotActiveError extends Error {
     constructor(record, ...args) {
-        this.record = record;
         super(...args);
+        this.record = record;
     }
 }
 
