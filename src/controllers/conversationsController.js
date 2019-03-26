@@ -23,6 +23,7 @@ export const createConversation = async (req, res) => {
             active: conversation.active
         });
     } catch(err) {
+        console.error(err);
         const error = new InternalServerError(res, 'Something went Wrong creating the conversation', err.stack);
         return error.getResponse();
     }

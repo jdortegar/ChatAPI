@@ -5,6 +5,7 @@ import Model from './Model';
 
 class Conversation  extends Model {
     constructor(id = null, members= [], title = null, description = null, organization = null, appData = {}, active = true, messageCount = 0) {
+        super();
         this.id = id;
         this.members = members;
         this.title = title;
@@ -41,7 +42,6 @@ class Conversation  extends Model {
     static async getUserConversations(userId) {
         try {
             const results = await conversationsDB.getConversationsByUserId(userId);
-            console.log(results);
             const collection = [];
             _.forEach(results, (val) => {
                 collection.push(new Conversation(val.id, val.members, val.title, val.description, val.organization, val.appData, val.active, val.messageCount));

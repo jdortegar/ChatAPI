@@ -14,7 +14,6 @@ const hashKey = (userId) => {
  * @param {String} userId 
  */
 export const getPresence = async (userId) => {
-    console.log('********ENTER PRESCENCE')
     try {
         const now = moment();
         await redis.zremrangebyscoreAsync(`${config.redis.prefix}${hashKey(userId)}`, 0, req.now.unix());
@@ -38,7 +37,6 @@ export const getPresence = async (userId) => {
  * @param {String} presence 
  */
 export const setPresence = async (userId, presence) => {
-    console.log('********ENTER PRESCENCE')
     try {
         const now = moment();
         const hash = hashKey(userId);
