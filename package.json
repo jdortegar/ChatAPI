@@ -27,7 +27,7 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.4",
     "apidoc": "^0.17.7",
-    "aws-sdk": "^2.420.0",
+    "aws-sdk": "^2.814.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
